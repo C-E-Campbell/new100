@@ -11,7 +11,7 @@ export default class Register extends Component {
         <div className="register-container">
           <div className="form-container">
             <h2>Sign Up</h2>
-            <form>
+            <form onSubmit={() => this.props.history.push("/dashboard")}>
               <label>Username</label>
               <input type="text" />
               <label>Email</label>

@@ -1,0 +1,37 @@
+.movie-item {
+	border: 1px solid rgba(177, 98, 25, 0.397);
+	margin: 2px;
+	color: #fff;
+	width: 90%;
+	font-size: 0.9rem;
+	padding: 4px 5px;
+	border-radius: 4px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+
+	button {
+		padding: 4px;
+		margin: 0;
+		background: transparent;
+		outline: none;
+		color: #fff;
+		border: none;
+		&:hover {
+			cursor: pointer;
+			color: rgb(240, 95, 51);
+			background: transparent;
+		}
+	}
+}
+
+.movie-item:hover {
+	background-color: rgb(31, 31, 31);
+}
+
+.icon-box {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}

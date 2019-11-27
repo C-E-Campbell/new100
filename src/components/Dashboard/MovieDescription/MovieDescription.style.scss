@@ -1,0 +1,49 @@
+.movie-description-box {
+  grid-row: 3/11;
+  grid-column: 2/6;
+  background: linear-gradient(rgba(5, 9, 10, 0.979), rgba(5, 9, 10, 0.979)),
+    url(../../../assets/userbg.jpg);
+  background-size: cover;
+  border-radius: 4px;
+  color: rgb(235, 235, 235);
+  border: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 2rem;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  h1 {
+    font-family: merriweather;
+    font-size: 2.5rem;
+    font-weight: 900;
+  }
+  img {
+    height: 200px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .movie-info {
+    p {
+      margin: 0.3rem;
+    }
+  }
+}
+
+.trailer-link {
+  color: rgb(255, 138, 4);
+  text-decoration-line: underline;
+
+  &:hover {
+    color: rgb(255, 156, 42);
+  }
+}
+
+.plot {
+  max-height: 5rem;
+  overflow-y: scroll;
+}

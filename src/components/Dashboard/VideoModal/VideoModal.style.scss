@@ -1,0 +1,16 @@
+#modalBtn {
+	padding: 4px 12px;
+	background-color: #292828;
+	border-radius: 4px;
+	color: #fff;
+	border: none;
+
+	&:hover {
+		cursor: pointer;
+		color: rgb(255, 138, 4);
+	}
+}
+
+iframe {
+	margin: 0 auto;
+}

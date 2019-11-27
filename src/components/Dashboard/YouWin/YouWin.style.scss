@@ -1,0 +1,15 @@
+.youwin {
+  background: linear-gradient(rgba(0, 0, 0, 0.274), rgba(0, 0, 0, 0.274)),
+    url("../../../assets/king.jpg");
+  background-size: cover;
+  height: 500px;
+  width: 50%;
+  margin: 0 auto;
+  z-index: 9;
+  border-radius: 4px;
+  // transform: translateY(-1000px);
+  // transition: transform 0.3s ease-out;
+}
+h2 {
+  text-align: center;
+}
