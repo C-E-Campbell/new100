@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import CommentEditModal from "../../components/CommentEditModal/CommentEditModal";
+import Header from "../../components/Shared/BackToDash/BackToDash";
+import Footer from "../../components/Shared/Footer/Footer";
+import CommentEditModal from "../../components/Journal/CommentEditModal/CommentEditModal";
 import axios from "axios";
 import "./Journal.style.scss";
-import JournalEntry from "../../components/JournalEntry/JournalEntry";
+import JournalEntry from "../../components/Journal/JournalEntry/JournalEntry";
 
 export default class Journal extends Component {
   constructor() {
