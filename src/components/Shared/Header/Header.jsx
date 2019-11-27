@@ -7,7 +7,9 @@ const Header = props => {
   return (
     <div className="header" id="header">
       <div className="header-container">
-        <Link to="/" className="header-logo"></Link>
+        <Link to="/">
+          <div className="header-logo"></div>
+        </Link>
         <ul className="header-nav">
           <Link to="/login" className="header-li">
             Login

@@ -8,9 +8,10 @@
 }
 
 .header-container {
+  max-width: 1260px;
   width: 80%;
   height: 100%;
-  margin: 0 auto;
+  margin: 1rem auto 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,8 +19,13 @@
 
 .header-logo {
   background-image: url("../../../assets/smallLogo.png.png");
-  background-size: cover;
-  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 250px;
+  div {
+    height: 100px;
+  }
 }
 
 .header-nav {
