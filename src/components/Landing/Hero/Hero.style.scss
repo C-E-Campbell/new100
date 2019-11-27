@@ -1,0 +1,125 @@
+.hero {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(
+      rgb(0, 0, 0) 1%,
+      rgba(0, 0, 0, 0.432) 65%,
+      rgb(0, 0, 0)
+    ),
+    url(../../../assets/image1.jpg);
+
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #fff;
+
+  z-index: 5555;
+}
+//font-family: 'Muli', sans-serif;
+.hero-text-container {
+  max-width: 70%;
+  padding-left: 20%;
+  font-size: 1.4rem;
+  position: relative;
+
+  h1 {
+    font-family: muli;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 70px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.644);
+  }
+  p {
+    font-family: muli;
+    font-family: "Merriweather", serif;
+    margin-bottom: 1rem;
+    width: 90%;
+    padding: 5px;
+    font-weight: 300;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    line-height: 30px;
+  }
+}
+
+.red {
+  color: rgb(255, 138, 4);
+  text-shadow: 1px 1px 3px #000;
+  font-family: "Merriweather", serif;
+}
+
+#bigBtn {
+  background-color: rgb(255, 138, 4);
+  font-size: 1.2rem;
+  color: #fff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  width: 100%;
+  font-weight: 900;
+  font-family: muli;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.466);
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.637);
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($color: rgb(255, 138, 4), $amount: 5%);
+  }
+}
+
+// @keyframes fadePicture {
+// 	0% {
+// 		background-image: linear-gradient(
+// 				rgb(0, 0, 0) 1%,
+// 				rgba(0, 0, 0, 0.301) 85%,
+// 				rgb(0, 0, 0)
+// 			),
+// 			url(../../Assets/assets/image1.jpg);
+// 	}
+
+// 	33% {
+// 		background-image: linear-gradient(
+// 				rgb(0, 0, 0) 1%,
+// 				rgba(0, 0, 0, 0.301) 85%,
+// 				rgb(0, 0, 0)
+// 			),
+// 			url(../../Assets/assets/image2.jpg);
+// 	}
+
+// 	66% {
+// 		background-image: linear-gradient(
+// 				rgba(0, 0, 0, 0.815) 1%,
+// 				rgba(0, 0, 0, 0.301) 85%,
+// 				rgb(0, 0, 0)
+// 			),
+// 			url(../../Assets/assets/image3.jpg);
+// 	}
+// }
+
+@media (max-width: 500px) {
+  .hero {
+    height: 70vh;
+  }
+  .hero-text-container {
+    top: 35%;
+
+    max-width: 80%;
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-text-container {
+    max-width: 70%;
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}

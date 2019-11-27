@@ -1,0 +1,28 @@
+.header-container {
+  width: 100vw;
+  height: 50px;
+  padding: 10px;
+}
+
+.inside-container {
+  max-width: 70%;
+  width: 11860px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    align-self: center;
+    font-size: 1.2rem;
+  }
+}
+
+.logo-box {
+  background: url("../../../assets/smallLogo.png.png");
+  height: 30px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
