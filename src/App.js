@@ -20,7 +20,7 @@ class App extends React.Component {
       userName: name,
       userId: id,
       completedMovies: movies
-    })}
+    });
   };
 
   render() {
