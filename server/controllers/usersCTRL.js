@@ -47,5 +47,9 @@ module.exports = {
       console.log(err);
       res.status(400).send("error in login");
     }
+  },
+  logout: async (req, res, next) => {
+    req.session.destroy();
+    res.status(200).send({});
   }
 };

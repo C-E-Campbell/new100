@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const movieCTRL = require("../controllers/movieCTRL");
 
-router.get("/", (req, res, next) => {
-  console.log("working");
-  res.json({ message: "it works for movies" });
-});
+router.get("/completed", movieCTRL.completed);
+router.get("/getcompleted", movieCTRL.getCompleted);
 
 module.exports = router;
