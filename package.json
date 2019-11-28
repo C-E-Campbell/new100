@@ -2,6 +2,8 @@
   "name": "new100",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8293",
+  "main": "./server/index.js",
   "dependencies": {
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
@@ -12,6 +14,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "nodemailer": "^6.3.1",
+    "nodemon": "^2.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
