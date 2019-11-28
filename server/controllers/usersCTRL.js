@@ -25,5 +25,27 @@ module.exports = {
     } catch (err) {
       res.status(500).send("error in register");
     }
+  },
+  login: async (req, res, next) => {
+    const db = req.app.get("db");
+    const { email, pass } = req.body;
+
+    try {
+      const checkUser = await db.check_for_user([email]);
+      let isValid = bcrypt.compareSync(pass, checkUser[0].pass);
+
+      if (isValid) {
+        req.session.user = {
+          id: checkUser[0].id,
+          email: checkUser[0].username
+        };
+        res.status(201).send(req.session.user);
+      } else {
+        res.status(400).send("email or pass may be invalid");
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(400).send("error in login");
+    }
   }
 };
