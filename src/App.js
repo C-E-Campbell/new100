@@ -18,7 +18,8 @@ class App extends React.Component {
     completedMovies: null,
     userId: null,
     start: "",
-    finish: ""
+    finish: "",
+    setMode: null
   };
 
   login = async (e, email, pass) => {
@@ -68,7 +69,8 @@ class App extends React.Component {
           userName: register.data.userName,
           email: register.data.email,
           start: register.data.start,
-          finish: register.data.finish
+          finish: register.data.finish,
+          setMode: register.data.setMode
         });
         this.props.history.push("/dashboard");
       }

@@ -20,7 +20,8 @@ module.exports = {
           id: newUser[0].id,
           userName: newUser[0].username,
           start: newUser[0].startdate,
-          finish: newUser[0].finishdate
+          finish: newUser[0].finishdate,
+          setMode: false
         };
         res.status(201).send(req.session.user);
       }

@@ -64,7 +64,7 @@ export default class Login extends Component {
         user: this.props.id,
         finishDay: finish
       });
-      console.log(result);
+
       this.setState({
         difficultyFlag: true,
         difficulty: diff,
@@ -78,7 +78,7 @@ export default class Login extends Component {
         user: this.props.id,
         finishDay: finish
       });
-      console.log(result);
+
       this.setState({
         difficultyFlag: true,
         difficulty: diff,
@@ -88,38 +88,64 @@ export default class Login extends Component {
   }
 
   render() {
-    if (!this.props.diff) {
+    if (this.props.diff) {
+      return (
+        <div>
+          <Header />
+          <div className="dashboard">
+            <UserBox
+              name={this.props.name}
+              movieListLength={this.state.movieList.length}
+              difficulty={this.state.difficulty}
+              acctStart={this.props.start}
+              acctEnd={this.state.acctEnd || this.props.finish}
+            />
+            <MovieList
+              getID={this.getID}
+              movies={this.state.movieList}
+              deleteMovie={this.deleteMovie}
+            />
+            <MovieDescription
+              trailer={this.state.trailerID}
+              movieData={this.state.currentMovie}
+            />
+          </div>
+
+          <Footer />
+        </div>
+      );
+    }
+    if (!this.state.difficultyFlag) {
       return <DiffModal myModalFunc={this.myModalFunc} />;
     } else {
       if (this.state.isEmpty) {
         return <YouWin className={("youwin", "move")} />;
-      } else {
-        return (
-          <div>
-            <Header />
-            <div className="dashboard">
-              <UserBox
-                name={this.props.name}
-                movieListLength={this.state.movieList.length}
-                difficulty={this.state.difficulty}
-                acctStart={this.props.start}
-                acctEnd={this.state.acctEnd || this.props.finish}
-              />
-              <MovieList
-                getID={this.getID}
-                movies={this.state.movieList}
-                deleteMovie={this.deleteMovie}
-              />
-              <MovieDescription
-                trailer={this.state.trailerID}
-                movieData={this.state.currentMovie}
-              />
-            </div>
-
-            <Footer />
-          </div>
-        );
       }
+      return (
+        <div>
+          <Header />
+          <div className="dashboard">
+            <UserBox
+              name={this.props.name}
+              movieListLength={this.state.movieList.length}
+              difficulty={this.state.difficulty}
+              acctStart={this.props.start}
+              acctEnd={this.state.acctEnd || this.props.finish}
+            />
+            <MovieList
+              getID={this.getID}
+              movies={this.state.movieList}
+              deleteMovie={this.deleteMovie}
+            />
+            <MovieDescription
+              trailer={this.state.trailerID}
+              movieData={this.state.currentMovie}
+            />
+          </div>
+
+          <Footer />
+        </div>
+      );
     }
   }
 }
