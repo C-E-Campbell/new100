@@ -14,7 +14,6 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      acctStart: null,
       acctEnd: null,
       movieList: [],
       movieItem: [],
@@ -31,17 +30,13 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    let getStart = moment().format("LL");
-    this.setState({ acctStart: getStart });
-
-    axios.get("/api/movies").then(response => {
-      this.setState({ movieList: response.data });
-    });
+    // axios.get("/api/movies").then(response => {
+    //   this.setState({ movieList: response.data });
+    // });
   }
 
   getID(movieData) {
     const { omdbID, youtubeID } = movieData;
-
     axios
       .get(`https://www.omdbapi.com/?apikey=4c3ee338&i=${omdbID}&plot=full`)
       .then(response => {
@@ -60,42 +55,40 @@ export default class Login extends Component {
       });
     }
   }
-  myModalFunc(diff) {
-    const finish = moment()
-      .add(1, "year")
-      .format("LL");
+  async myModalFunc(diff) {
     if (diff === "Easy") {
+      const finish = moment()
+        .add(1, "year")
+        .format("LL");
+      const result = await axios.post("/users/setMode", {
+        user: this.props.id,
+        finishDay: finish
+      });
+      console.log(result);
       this.setState({
         difficultyFlag: true,
         difficulty: diff,
-        acctEnd: moment()
-          .add(1, "year")
-          .format("LL")
-      });
-      axios.post("/users/setMode", {
-        user: this.props.id,
-        finishDay: finish
+        acctEnd: result.data
       });
     } else if (diff === "MurderMe") {
       const finish = moment()
         .add(100, "day")
         .format("LL");
+      const result = await axios.post("/users/setMode", {
+        user: this.props.id,
+        finishDay: finish
+      });
+      console.log(result);
       this.setState({
         difficultyFlag: true,
         difficulty: diff,
-        acctEnd: moment()
-          .add(100, "day")
-          .format("LL")
-      });
-      axios.post("/users/setMode", {
-        user: this.props.id,
-        finishDay: finish
+        acctEnd: result.data
       });
     }
   }
 
   render() {
-    if (!this.props.finish) {
+    if (!this.props.diff) {
       return <DiffModal myModalFunc={this.myModalFunc} />;
     } else {
       if (this.state.isEmpty) {
@@ -110,7 +103,7 @@ export default class Login extends Component {
                 movieListLength={this.state.movieList.length}
                 difficulty={this.state.difficulty}
                 acctStart={this.props.start}
-                acctEnd={this.props.finish || this.state.acctEnd}
+                acctEnd={this.state.acctEnd || this.props.finish}
               />
               <MovieList
                 getID={this.getID}

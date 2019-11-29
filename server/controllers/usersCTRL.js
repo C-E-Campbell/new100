@@ -18,7 +18,9 @@ module.exports = {
         ]);
         req.session.user = {
           id: newUser[0].id,
-          email: newUser[0].username
+          userName: newUser[0].username,
+          start: newUser[0].startdate,
+          finish: newUser[0].finishdate
         };
         res.status(201).send(req.session.user);
       }
@@ -40,7 +42,8 @@ module.exports = {
           userName: checkUser[0].username,
           start: checkUser[0].startdate,
           finish: checkUser[0].finishdate,
-          completed: checkUser[0].completed
+          completed: checkUser[0].completed,
+          setMode: checkUser[0].setdiff
         };
         res.status(201).send(req.session.user);
       } else {
@@ -59,7 +62,9 @@ module.exports = {
     const db = req.app.get("db");
     const { user, finishDay } = req.body;
     try {
-      await db.set_difficulty([user, finishDay]);
+      const result = await db.set_difficulty([user, finishDay]);
+      console.log(result[0].finishdate);
+      res.status(200).send(result[0].finishdate);
     } catch (err) {
       console.log(err);
       res.status(500).send("something happened in setMode");

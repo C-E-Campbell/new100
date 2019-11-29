@@ -21,11 +21,11 @@ class App extends React.Component {
     finish: ""
   };
 
-  login = async (e, user, pass) => {
+  login = async (e, email, pass) => {
     e.preventDefault();
     try {
       const login = await axios.post("/users/login", {
-        email: user,
+        email: email,
         pass: pass
       });
       console.log(login);
@@ -35,7 +35,8 @@ class App extends React.Component {
           userName: login.data.userName,
           email: login.data.email,
           start: login.data.start,
-          finish: login.data.finish
+          finish: login.data.finish,
+          setMode: login.data.setMode
         });
         this.props.history.push("/dashboard");
       }
@@ -50,18 +51,25 @@ class App extends React.Component {
     }
   };
 
-  register = async (e, user, email, pass) => {
+  register = async (e, user, pass, email) => {
     e.preventDefault();
     try {
       const startDate = moment().format("LL");
       const register = await axios.post("/users/register", {
-        email: email,
-        pass: pass,
         user: user,
+        pass: pass,
+        email: email,
         start: startDate,
         finish: 0
       });
       if (register.data.id) {
+        this.setState({
+          userId: register.data.id,
+          userName: register.data.userName,
+          email: register.data.email,
+          start: register.data.start,
+          finish: register.data.finish
+        });
         this.props.history.push("/dashboard");
       }
     } catch (err) {
@@ -82,6 +90,7 @@ class App extends React.Component {
           path="/dashboard"
           render={() => (
             <Dashboard
+              diff={this.state.setMode}
               name={this.state.userName}
               start={this.state.start}
               finish={this.state.finish}

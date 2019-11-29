@@ -7,6 +7,8 @@ VALUES($1,
 
 
 SELECT username,
-       id
+       id,
+       startDate,
+       finishDate
 FROM users
 WHERE email = $3;
