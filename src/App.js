@@ -19,7 +19,8 @@ class App extends React.Component {
     userId: null,
     start: "",
     finish: "",
-    setMode: null
+    setMode: null,
+    mode: ""
   };
 
   login = async (e, email, pass) => {
@@ -37,7 +38,8 @@ class App extends React.Component {
           email: login.data.email,
           start: login.data.start,
           finish: login.data.finish,
-          setMode: login.data.setMode
+          setMode: login.data.setMode,
+          mode: login.data.mode
         });
         this.props.history.push("/dashboard");
       }
@@ -92,6 +94,7 @@ class App extends React.Component {
           path="/dashboard"
           render={() => (
             <Dashboard
+              mode={this.state.mode}
               diff={this.state.setMode}
               name={this.state.userName}
               start={this.state.start}

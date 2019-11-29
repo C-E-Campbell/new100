@@ -62,7 +62,8 @@ export default class Login extends Component {
         .format("LL");
       const result = await axios.post("/users/setMode", {
         user: this.props.id,
-        finishDay: finish
+        finishDay: finish,
+        mode: "Easy"
       });
 
       this.setState({
@@ -76,7 +77,8 @@ export default class Login extends Component {
         .format("LL");
       const result = await axios.post("/users/setMode", {
         user: this.props.id,
-        finishDay: finish
+        finishDay: finish,
+        mode: "MurderMe"
       });
 
       this.setState({
@@ -96,7 +98,7 @@ export default class Login extends Component {
             <UserBox
               name={this.props.name}
               movieListLength={this.state.movieList.length}
-              difficulty={this.state.difficulty}
+              difficulty={this.props.mode || this.state.difficulty}
               acctStart={this.props.start}
               acctEnd={this.state.acctEnd || this.props.finish}
             />

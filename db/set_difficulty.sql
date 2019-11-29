@@ -4,6 +4,11 @@ WHERE id = $1;
 
 
 UPDATE users
+SET mode = $3
+WHERE id = $1;
+
+
+UPDATE users
 SET finishdate = $2
 WHERE id = $1;
 

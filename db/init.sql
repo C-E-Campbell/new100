@@ -7,6 +7,7 @@ startDate VARCHAR(1000),
 finishDate VARCHAR(1000),
 completed BOOLEAN DEFAULT FALSE,
 setmode VARCHAR(100),
+mode VARCHAR(500),
 setdiff BOOLEAN DEFAULT FALSE)
 
 VALUES(ccamp290, rufus0606, charles.e.campbell1989@gmail.com, 1234, 1234, false)

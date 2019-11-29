@@ -44,7 +44,8 @@ module.exports = {
           start: checkUser[0].startdate,
           finish: checkUser[0].finishdate,
           completed: checkUser[0].completed,
-          setMode: checkUser[0].setdiff
+          setMode: checkUser[0].setdiff,
+          mode: checkUser[0].mode
         };
         res.status(201).send(req.session.user);
       } else {
@@ -61,9 +62,9 @@ module.exports = {
   },
   setMode: async (req, res, next) => {
     const db = req.app.get("db");
-    const { user, finishDay } = req.body;
+    const { user, finishDay, mode } = req.body;
     try {
-      const result = await db.set_difficulty([user, finishDay]);
+      const result = await db.set_difficulty([user, finishDay, mode]);
       console.log(result[0].finishdate);
       res.status(200).send(result[0].finishdate);
     } catch (err) {

@@ -9,7 +9,8 @@ export default class UserBox extends Component {
           <div>
             <h5>{`Challenge Started: ${this.props.acctStart}`}</h5>
             <h5 className="dateEnds">{`Fate Determined: ${this.props.acctEnd}`}</h5>
-            <h5 className="orange">{`Difficulty: ${this.props.difficulty}`}</h5>
+            <h5 className="orange">{`Difficulty: ${this.props.difficulty ||
+              this.state.difficulty}`}</h5>
             {/* <h5>Test Date Format</h5>
 						<h5>Test Date Format</h5>
 						<h5>Test Difficulty</h5> */}
