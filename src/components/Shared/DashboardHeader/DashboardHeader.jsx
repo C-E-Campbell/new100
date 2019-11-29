@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../HomeOnlyHeader/HomeOnly.style.scss";
+import "../DashboardHeader/DashboardHeader.style.scss";
 export default function HomeOnlyHeader() {
   return (
     <div className="header-container">
       <div className="inside-container">
-        <Link to="/">
-          <div className="logo-box"></div>
-        </Link>
         <div>
           <Link to="/comments">Spill Your Guts</Link>
           <Link to="/">Logout</Link>

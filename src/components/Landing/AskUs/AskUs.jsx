@@ -5,7 +5,9 @@ import "./AskUs.style.scss";
 const AskUs = () => {
   return (
     <section className="ask-us" id="askus">
-      <h2 className="askUsH2">Features</h2>
+      <h2 className="askUsH2" data-aos="fade" data-aos-delay="50">
+        Features
+      </h2>
       <section className="feature-section">
         <div className="feature-item one">
           <i className="fas fa-video fa-3x"></i>

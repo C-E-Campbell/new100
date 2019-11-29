@@ -23,7 +23,7 @@ module.exports = {
         res.status(201).send(req.session.user);
       }
     } catch (err) {
-      res.status(500).send("error in register");
+      res.status(501).send("error in register");
     }
   },
   login: async (req, res, next) => {
@@ -41,7 +41,7 @@ module.exports = {
         };
         res.status(201).send(req.session.user);
       } else {
-        res.status(400).send("email or pass may be invalid");
+        res.status(401).send("email or pass may be invalid");
       }
     } catch (err) {
       console.log(err);
