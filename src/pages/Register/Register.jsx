@@ -7,27 +7,6 @@ import moment from "moment";
 export default class Register extends Component {
   state = { email: "", pass: "", user: "" };
 
-  register = async e => {
-    e.preventDefault();
-    try {
-      const startDate = Number(moment.unix(moment())._i);
-      const register = await axios.post("/users/register", {
-        email: this.state.email,
-        pass: this.state.pass,
-        user: this.state.user,
-        start: startDate,
-        finish: 0
-      });
-      if (register.data.id) {
-        this.props.history.push("/dashboard");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  componentDidMount() {
-    console.log(moment.unix(moment())._i);
-  }
   render() {
     return (
       <React.Fragment>
@@ -35,7 +14,16 @@ export default class Register extends Component {
         <div className="register-container">
           <div className="form-container" data-aos="fade" data-aos-delay="50">
             <h2>Sign Up</h2>
-            <form onSubmit={e => this.register(e)}>
+            <form
+              onSubmit={e =>
+                this.props.register(
+                  e,
+                  this.state.user,
+                  this.state.pass,
+                  this.state.email
+                )
+              }
+            >
               <label>Email</label>
               <input
                 value={this.state.email}

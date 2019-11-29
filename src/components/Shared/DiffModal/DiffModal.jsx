@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./DiffModal.style.scss";
 import { Button, Modal } from "semantic-ui-react";
-
+import axios from "axios";
 export default class ModalExampleControlled extends Component {
   state = { modalOpen: true };
 
@@ -22,8 +22,10 @@ export default class ModalExampleControlled extends Component {
         </Modal.Content>
         <Modal.Actions>
           <Button
-            onClick={this.handleClose}
-            onClick={() => this.props.myModalFunc("Easy")}
+            onClick={() => {
+              this.props.myModalFunc("Easy");
+              this.handleClose();
+            }}
             inverted
           >
             Easy
@@ -31,8 +33,10 @@ export default class ModalExampleControlled extends Component {
           <Button
             color="red"
             id="murderme"
-            onClick={this.handleClose}
-            onClick={() => this.props.myModalFunc("MurderMe")}
+            onClick={() => {
+              this.props.myModalFunc("MurderMe");
+              this.handleClose();
+            }}
             inverted
           >
             MurderME

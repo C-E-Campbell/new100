@@ -37,7 +37,10 @@ module.exports = {
       if (isValid) {
         req.session.user = {
           id: checkUser[0].id,
-          email: checkUser[0].username
+          userName: checkUser[0].username,
+          start: checkUser[0].startdate,
+          finish: checkUser[0].finishdate,
+          completed: checkUser[0].completed
         };
         res.status(201).send(req.session.user);
       } else {
@@ -51,5 +54,15 @@ module.exports = {
   logout: async (req, res, next) => {
     req.session.destroy();
     res.status(200).send({});
+  },
+  setMode: async (req, res, next) => {
+    const db = req.app.get("db");
+    const { user, finishDay } = req.body;
+    try {
+      await db.set_difficulty([user, finishDay]);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("something happened in setMode");
+    }
   }
 };

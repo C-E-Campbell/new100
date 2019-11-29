@@ -5,7 +5,7 @@ export default class UserBox extends Component {
     return (
       <div className="user-box">
         <div className="user-box-data">
-          <h1>Charles Campbell</h1>
+          <h1>{this.props.name}</h1>
           <div>
             <h5>{`Challenge Started: ${this.props.acctStart}`}</h5>
             <h5 className="dateEnds">{`Fate Determined: ${this.props.acctEnd}`}</h5>
