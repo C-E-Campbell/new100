@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import HomeHeader from "../../components/Shared/HomeOnlyHeader/HomeOnlyHeader";
 import "./Register.style.scss";
-import axios from "axios";
-import moment from "moment";
 
 export default class Register extends Component {
   state = { email: "", pass: "", user: "" };
@@ -15,14 +13,22 @@ export default class Register extends Component {
           <div className="form-container" data-aos="fade" data-aos-delay="50">
             <h2>Sign Up</h2>
             <form
-              onSubmit={e =>
-                this.props.register(
-                  e,
-                  this.state.user,
-                  this.state.pass,
-                  this.state.email
-                )
-              }
+              onSubmit={e => {
+                if (
+                  this.state.email === "" ||
+                  this.state.pass === "" ||
+                  this.state.user === ""
+                ) {
+                  alert("dont leave fields blank");
+                } else {
+                  this.props.register(
+                    e,
+                    this.state.user,
+                    this.state.pass,
+                    this.state.email
+                  );
+                }
+              }}
             >
               <label>Email</label>
               <input

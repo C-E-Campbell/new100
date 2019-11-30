@@ -6,7 +6,6 @@ export default function HomeOnlyHeader() {
     <div className="header-container">
       <div className="inside-container">
         <div>
-          <Link to="/comments">Spill Your Guts</Link>
           <Link to="/">Logout</Link>
         </div>
       </div>

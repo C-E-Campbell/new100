@@ -17,9 +17,13 @@ export default class Register extends Component {
           <div className="form-container" data-aos="fade" data-aos-delay="50">
             <h2>Login</h2>
             <form
-              onSubmit={e =>
-                this.props.log(e, this.state.email, this.state.pass)
-              }
+              onSubmit={e => {
+                if (this.state.email === "" || this.state.pass === "") {
+                  alert("dont leave fields blank");
+                } else {
+                  this.props.log(e, this.state.email, this.state.pass);
+                }
+              }}
             >
               <label>Email</label>
               <input
