@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { withRouter } from "react-router";
 import "./Dashboard.style.scss";
 import UserBox from "../../components/Dashboard/UserBox/UserBox";
 import MovieList from "../../components/Dashboard/MovieList/MovieList";
@@ -10,7 +11,7 @@ import YouWin from "../../components/Dashboard/YouWin/YouWin";
 import Footer from "../../components/Shared/Footer/Footer";
 import axios from "axios";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,14 +39,16 @@ export default class Login extends Component {
     console.log(finishedMovieIds);
     const updatedList = finishedMovieIds.data;
     console.log(updatedList);
+    let editedList = movies.data;
     if (updatedList.length > 0) {
       updatedList.forEach(id => {
         console.log(id);
-        movies.data.splice(id - 1, 1);
+        const index = editedList.findIndex(movie => movie.id === id);
+        editedList.splice(index, 1);
       });
     }
 
-    this.setState({ movieList: movies.data });
+    this.setState({ movieList: editedList });
   }
 
   getID(movieData) {
@@ -111,6 +114,9 @@ export default class Login extends Component {
   }
 
   render() {
+    if (!this.props.id) {
+      this.props.history.push("/");
+    }
     if (this.props.diff) {
       return (
         <div>
@@ -140,35 +146,35 @@ export default class Login extends Component {
     }
     if (!this.state.difficultyFlag) {
       return <DiffModal myModalFunc={this.myModalFunc} />;
-    } else {
-      if (this.state.isEmpty) {
-        return <YouWin className={("youwin", "move")} />;
-      }
-      return (
-        <div>
-          <Header />
-          <div className="dashboard">
-            <UserBox
-              name={this.props.name}
-              movieListLength={this.state.movieList.length}
-              difficulty={this.state.difficulty}
-              acctStart={this.props.start}
-              acctEnd={this.state.acctEnd || this.props.finish}
-            />
-            <MovieList
-              getID={this.getID}
-              movies={this.state.movieList}
-              deleteMovie={this.deleteMovie}
-            />
-            <MovieDescription
-              trailer={this.state.trailerID}
-              movieData={this.state.currentMovie}
-            />
-          </div>
-
-          <Footer />
-        </div>
-      );
     }
+    if (this.state.isEmpty) {
+      return <YouWin className={("youwin", "move")} />;
+    }
+    return (
+      <div>
+        <Header />
+        <div className="dashboard">
+          <UserBox
+            name={this.props.name}
+            movieListLength={this.state.movieList.length}
+            difficulty={this.state.difficulty}
+            acctStart={this.props.start}
+            acctEnd={this.state.acctEnd || this.props.finish}
+          />
+          <MovieList
+            getID={this.getID}
+            movies={this.state.movieList}
+            deleteMovie={this.deleteMovie}
+          />
+          <MovieDescription
+            trailer={this.state.trailerID}
+            movieData={this.state.currentMovie}
+          />
+        </div>
+
+        <Footer />
+      </div>
+    );
   }
 }
+export default withRouter(Login);

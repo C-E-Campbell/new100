@@ -40,11 +40,14 @@ module.exports = {
       console.log(err);
     }
   },
-  deleteMovie: (req, res) => {
+  deleteMovie: async (req, res) => {
     const db = req.app.get("db");
     const { user, id } = req.params;
-    db.complete_movie([user, id]);
-    res.status(200).send("movie completed");
+    const result = await db.check_for_movie([user, id]);
+    if (!result[0]) {
+      db.complete_movie([user, id]);
+      res.status(200).send("movie completed");
+    }
   },
   getMovieList: (req, res) => {
     res.status(200).send(movieData);
