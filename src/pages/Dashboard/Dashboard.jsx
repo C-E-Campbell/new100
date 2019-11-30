@@ -21,7 +21,8 @@ export default class Login extends Component {
       difficulty: "",
       currentMovie: {},
       trailerID: "",
-      isEmpty: false
+      isEmpty: false,
+      freshList: []
     };
 
     this.getID = this.getID.bind(this);
@@ -29,10 +30,22 @@ export default class Login extends Component {
     this.deleteMovie = this.deleteMovie.bind(this);
   }
 
-  componentDidMount() {
-    axios.get("/movie/getmovies").then(response => {
-      this.setState({ movieList: response.data });
-    });
+  async componentDidMount() {
+    const id = this.props.id;
+    const movies = await axios.get("/movie/getMovieList");
+    // console.log(movies);
+    const finishedMovieIds = await axios.get(`/movie/getmovies/${id}`);
+    console.log(finishedMovieIds);
+    const updatedList = finishedMovieIds.data;
+    console.log(updatedList);
+    if (updatedList.length > 0) {
+      updatedList.forEach(id => {
+        console.log(id);
+        movies.data.splice(id - 1, 1);
+      });
+    }
+
+    this.setState({ movieList: movies.data });
   }
 
   getID(movieData) {
@@ -46,13 +59,21 @@ export default class Login extends Component {
 
   deleteMovie(id) {
     if (this.state.movieList.length === 1) {
-      axios.delete(`/api/movie/${id}`).then(response => {
-        this.setState({ movieList: response.data, isEmpty: true });
+      const newMovieList = this.state.movieList.filter(movie => {
+        if (movie.id !== id) {
+          return movie;
+        }
       });
+      this.setState({ movieList: newMovieList, isEmpty: true });
     } else {
-      axios.delete(`/api/movie/${id}`).then(response => {
-        this.setState({ movieList: response.data });
+      const newMovieList = this.state.movieList.filter(movie => {
+        if (movie.id !== id) {
+          return movie;
+        }
       });
+      this.setState({ movieList: newMovieList });
+      const user = this.props.id;
+      axios.delete(`/movie/deleteMovie/${id}/${user}`);
     }
   }
   async myModalFunc(diff) {

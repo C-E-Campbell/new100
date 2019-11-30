@@ -13,6 +13,6 @@ setdiff BOOLEAN DEFAULT FALSE)
 VALUES(ccamp290, rufus0606, charles.e.campbell1989@gmail.com, 1234, 1234, false)
 
 CREATE TABLE completed(
-id NUMBER,
-movieId NUMBER
+id INTEGER,
+movieId INTEGER
 )

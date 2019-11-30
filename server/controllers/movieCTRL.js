@@ -25,7 +25,28 @@ module.exports = {
       console.log(err);
     }
   },
-  getmovies: (req, res, next) => {
+  getmovies: async (req, res, next) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    try {
+      const result = await db.get_completed_movies([id]);
+      const ids = result.map(movie => movie.movieid);
+      if (result[0]) {
+        res.status(200).send(ids);
+      } else {
+        res.status(200).send([]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteMovie: (req, res) => {
+    const db = req.app.get("db");
+    const { user, id } = req.params;
+    db.complete_movie([user, id]);
+    res.status(200).send("movie completed");
+  },
+  getMovieList: (req, res) => {
     res.status(200).send(movieData);
   }
 };
