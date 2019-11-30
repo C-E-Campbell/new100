@@ -30,7 +30,6 @@ class App extends React.Component {
         email: email,
         pass: pass
       });
-      console.log(login);
       if (login.data.id) {
         this.setState({
           userId: login.data.id,
