@@ -93,7 +93,7 @@ export default class Login extends Component {
     if (this.props.diff) {
       return (
         <div>
-          <Header />
+          <Header logout={this.props.logout} />
           <div className="dashboard">
             <UserBox
               name={this.props.name}

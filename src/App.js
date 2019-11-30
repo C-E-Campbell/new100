@@ -81,6 +81,19 @@ class App extends React.Component {
     }
   };
 
+  logout = () => {
+    console.log("hello");
+    this.setState({
+      userName: "",
+      completedMovies: null,
+      userId: "",
+      start: "",
+      finish: "",
+      setMode: null,
+      mode: ""
+    });
+  };
+
   render() {
     return (
       <Switch>
@@ -94,6 +107,7 @@ class App extends React.Component {
           path="/dashboard"
           render={() => (
             <Dashboard
+              logout={this.logout}
               mode={this.state.mode}
               diff={this.state.setMode}
               name={this.state.userName}
