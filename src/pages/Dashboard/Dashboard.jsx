@@ -30,7 +30,7 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    axios.get("../../../server/JSON/movieAPI.json").then(response => {
+    axios.get("/movie/getmovies").then(response => {
       this.setState({ movieList: response.data });
     });
   }

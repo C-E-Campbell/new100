@@ -1,3 +1,5 @@
+const movieData = require("../data/movies.json");
+
 module.exports = {
   completed: async (req, res, next) => {
     const db = req.app.get("db");
@@ -22,5 +24,8 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+  getmovies: (req, res, next) => {
+    res.status(200).send(movieData);
   }
 };
